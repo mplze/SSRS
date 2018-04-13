@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="NavisionRS">
+      <DataSourceReference>NavisionRS</DataSourceReference>
+      <rd:DataSourceID>361df21c-d11d-4805-a181-afd5d871b5b9</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>2.5cm</BottomMargin>
+  <RightMargin>1.5cm</RightMargin>
+  <PageWidth>21cm</PageWidth>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>0.25cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox5">
+        <Top>1.5cm</Top>
+        <rd:DefaultName>textbox5</rd:DefaultName>
+        <ZIndex>3</ZIndex>
+        <Width>17cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>The following graph shows total turnover and total profit for item sales per Month.</Value>
+      </Textbox>
+      <Textbox Name="textbox3">
+        <Top>0.25cm</Top>
+        <rd:DefaultName>textbox3</rd:DefaultName>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <FontSize>18pt</FontSize>
+          <BorderColor>
+            <Bottom>Black</Bottom>
+          </BorderColor>
+          <BackgroundColor>SteelBlue</BackgroundColor>
+          <Color>White</Color>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>1cm</Height>
+        <Value>1: Sales for all Customers</Value>
+      </Textbox>
+      <Chart Name="chart2">
+        <Legend>
+          <Visible>true</Visible>
+          <Style>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+          </Style>
+          <Position>RightCenter</Position>
+        </Legend>
+        <Subtype>Plain</Subtype>
+        <Title>
+          <Caption>Item Sales Profit</Caption>
+        </Title>
+        <NoRows>No available data</NoRows>
+        <Height>7.61905cm</Height>
+        <CategoryAxis>
+          <Axis>
+            <Title />
+            <MajorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <MajorTickMarks>Outside</MajorTickMarks>
+            <Min>0</Min>
+            <Visible>true</Visible>
+          </Axis>
+        </CategoryAxis>
+        <PointWidth>0</PointWidth>
+        <ThreeDProperties>
+          <Rotation>30</Rotation>
+          <Inclination>30</Inclination>
+          <Shading>Simple</Shading>
+          <WallThickness>50</WallThickness>
+        </ThreeDProperties>
+        <DataSetName>Sales</DataSetName>
+        <SeriesGroupings>
+          <SeriesGrouping>
+            <DynamicSeries>
+              <Grouping Name="chart2_SeriesGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!YEAR.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Label>=Fields!YEAR.Value</Label>
+            </DynamicSeries>
+          </SeriesGrouping>
+        </SeriesGroupings>
+        <Top>9.75cm</Top>
+        <PlotArea>
+          <Style>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+            <BackgroundColor>LightGrey</BackgroundColor>
+          </Style>
+        </PlotArea>
+        <ValueAxis>
+          <Axis>
+            <Title />
+            <MajorGridLines>
+              <ShowGridLines>true</ShowGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <MajorTickMarks>Outside</MajorTickMarks>
+            <Min>0</Min>
+            <Margin>true</Margin>
+            <Visible>true</Visible>
+            <Scalar>true</Scalar>
+          </Axis>
+        </ValueAxis>
+        <ZIndex>1</ZIndex>
+        <Type>Column</Type>
+        <Width>17cm</Width>
+        <CategoryGroupings>
+          <CategoryGrouping>
+            <DynamicCategories>
+              <Grouping Name="chart2_CategoryGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!MONTHNAME.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Label>=Fields!MONTHNAME.Value</Label>
+            </DynamicCategories>
+          </CategoryGrouping>
+        </CategoryGroupings>
+        <Palette>Default</Palette>
+        <ChartData>
+          <ChartSeries>
+            <DataPoints>
+              <DataPoint>
+                <DataValues>
+                  <DataValue>
+                    <Value>=Sum(Fields!Profit.Value)</Value>
+                  </DataValue>
+                </DataValues>
+                <DataLabel />
+                <Marker />
+              </DataPoint>
+            </DataPoints>
+          </ChartSeries>
+        </ChartData>
+        <Style>
+          <BackgroundColor>White</BackgroundColor>
+        </Style>
+      </Chart>
+      <Chart Name="chart1">
+        <Legend>
+          <Visible>true</Visible>
+          <Style>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+          </Style>
+          <Position>RightCenter</Position>
+        </Legend>
+        <Subtype>Plain</Subtype>
+        <Title>
+          <Caption>Total Item Turnover</Caption>
+        </Title>
+        <NoRows>No available data</NoRows>
+        <Height>7.61905cm</Height>
+        <CategoryAxis>
+          <Axis>
+            <Title />
+            <MajorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <MajorTickMarks>Outside</MajorTickMarks>
+            <Min>0</Min>
+            <Visible>true</Visible>
+          </Axis>
+        </CategoryAxis>
+        <PointWidth>0</PointWidth>
+        <ThreeDProperties>
+          <Rotation>30</Rotation>
+          <Inclination>30</Inclination>
+          <Shading>Simple</Shading>
+          <WallThickness>50</WallThickness>
+        </ThreeDProperties>
+        <DataSetName>Sales</DataSetName>
+        <SeriesGroupings>
+          <SeriesGrouping>
+            <DynamicSeries>
+              <Grouping Name="chart1_SeriesGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!YEAR.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Label>=Fields!YEAR.Value</Label>
+            </DynamicSeries>
+          </SeriesGrouping>
+        </SeriesGroupings>
+        <Top>2.25cm</Top>
+        <PlotArea>
+          <Style>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+            <BackgroundColor>LightGrey</BackgroundColor>
+          </Style>
+        </PlotArea>
+        <ValueAxis>
+          <Axis>
+            <Title />
+            <MajorGridLines>
+              <ShowGridLines>true</ShowGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <MajorTickMarks>Outside</MajorTickMarks>
+            <Min>0</Min>
+            <Margin>true</Margin>
+            <Visible>true</Visible>
+            <Scalar>true</Scalar>
+          </Axis>
+        </ValueAxis>
+        <Type>Column</Type>
+        <Width>17cm</Width>
+        <CategoryGroupings>
+          <CategoryGrouping>
+            <DynamicCategories>
+              <Grouping Name="chart1_CategoryGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!MONTHNAME.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Label>=Fields!MONTHNAME.Value</Label>
+            </DynamicCategories>
+          </CategoryGrouping>
+        </CategoryGroupings>
+        <Palette>Default</Palette>
+        <ChartData>
+          <ChartSeries>
+            <DataPoints>
+              <DataPoint>
+                <DataValues>
+                  <DataValue>
+                    <Value>=Sum(Fields!Sales_Amount_Actual_.Value)</Value>
+                  </DataValue>
+                </DataValues>
+                <DataLabel />
+                <Marker>
+                  <Size>6pt</Size>
+                </Marker>
+              </DataPoint>
+            </DataPoints>
+          </ChartSeries>
+        </ChartData>
+        <Style>
+          <BackgroundColor>White</BackgroundColor>
+        </Style>
+      </Chart>
+    </ReportItems>
+    <Height>18.36905cm</Height>
+  </Body>
+  <PageHeader>
+    <ReportItems>
+      <Textbox Name="textbox35">
+        <Left>15.5cm</Left>
+        <Top>0.5cm</Top>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp;  Globals!TotalPages</Value>
+      </Textbox>
+      <Image Name="image1">
+        <Sizing>AutoSize</Sizing>
+        <MIMEType>image/gif</MIMEType>
+        <Width>3.80952cm</Width>
+        <Source>Embedded</Source>
+        <Style />
+        <Value>microsoftgif</Value>
+      </Image>
+    </ReportItems>
+    <Height>0.44792in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageHeader>
+  <rd:ReportID>ef4ee61b-af08-4722-a743-eae125747a86</rd:ReportID>
+  <LeftMargin>1.5cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="microsoftgif">
+      <ImageData>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</ImageData>
+      <MIMEType>image/gif</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="Sales">
+      <Query>
+        <CommandText>SELECT     DATEPART(Year, [Posting Date]) AS YEAR, DATEPART(Quarter, [Posting Date]) AS QUARTER, DATENAME(Month, [Posting Date]) AS MONTHNAME, 
+                      DATEPART(Month, [Posting Date]) AS MONTH, SUM([Sales Amount (Actual)]) AS [Sales Amount(Actual)], SUM([Cost Amount (Actual)]) 
+                      AS [Cost Amount(Actual)], SUM(Adjustment) AS Adjustment, SUM([Sales Amount (Actual)] + [Cost Amount (Actual)] + Adjustment) AS Profit
+FROM         [CRONUS International Ltd_$Value Entry]
+WHERE     ([Item Ledger Entry Type] = 1) AND ([Expected Cost] &lt;&gt; 1) AND ([Invoiced Quantity] &lt;&gt; 0)
+GROUP BY DATEPART(Year, [Posting Date]), DATEPART(Quarter, [Posting Date]), DATENAME(Month, [Posting Date]), [Posting Date]
+ORDER BY YEAR DESC, MONTH</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="YEAR">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>YEAR</DataField>
+        </Field>
+        <Field Name="QUARTER">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>QUARTER</DataField>
+        </Field>
+        <Field Name="MONTHNAME">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MONTHNAME</DataField>
+        </Field>
+        <Field Name="MONTH">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>MONTH</DataField>
+        </Field>
+        <Field Name="Sales_Amount_Actual_">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Sales Amount(Actual)</DataField>
+        </Field>
+        <Field Name="Cost_Amount_Actual_">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Cost Amount(Actual)</DataField>
+        </Field>
+        <Field Name="Adjustment">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Adjustment</DataField>
+        </Field>
+        <Field Name="Profit">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Profit</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code />
+  <Width>18cm</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Description>The report shows a graph containing turnover, profit and customer balances for items</Description>
+  <Language>en-GB</Language>
+  <PageFooter>
+    <ReportItems>
+      <Textbox Name="textbox4">
+        <rd:DefaultName>textbox4</rd:DefaultName>
+        <Action>
+          <Hyperlink>http://www.tectura.dk</Hyperlink>
+        </Action>
+        <Width>7.25cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontSize>6pt</FontSize>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>Developed by Tectura (Denmark) A/S</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.19687in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageFooter>
+  <TopMargin>2.5cm</TopMargin>
+  <PageHeight>29.7cm</PageHeight>
+</Report>

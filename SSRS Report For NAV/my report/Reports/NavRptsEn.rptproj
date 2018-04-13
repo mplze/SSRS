@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmR3ZD0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9EYXRhV2FyZWhvdXNlL0Rlc2lnbmVyLzEuMCI+DQogIDxFbmFibGVkPmZhbHNlPC9FbmFibGVkPg0KICA8UHJvamVjdE5hbWU+PC9Qcm9qZWN0TmFtZT4NCiAgPEF1eFBhdGg+PC9BdXhQYXRoPg0KICA8TG9jYWxQYXRoPjwvTG9jYWxQYXRoPg0KICA8UHJvdmlkZXI+PC9Qcm92aWRlcj4NCjwvU291cmNlQ29udHJvbEluZm8+</State>
+  <DataSources>
+    <ProjectItem>
+      <Name>NavisionRS.rds</Name>
+      <FullPath>NavisionRS.rds</FullPath>
+    </ProjectItem>
+  </DataSources>
+  <Reports>
+    <ProjectItem>
+      <Name>01 - All Customers - Sales.rdl</Name>
+      <FullPath>01 - All Customers - Sales.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>02 - All Customers - Sales matrix with Country City and Customer.rdl</Name>
+      <FullPath>02 - All Customers - Sales matrix with Country City and Customer.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>03 - All Customers - Country Product-Group Item-Group.rdl</Name>
+      <FullPath>03 - All Customers - Country Product-Group Item-Group.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>04 - All Customers - Country Item-Group Product-Group.rdl</Name>
+      <FullPath>04 - All Customers - Country Item-Group Product-Group.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>05 - All Customers - Top 10 Profits.rdl</Name>
+      <FullPath>05 - All Customers - Top 10 Profits.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>06 - All Customers - Top 10 - Item Sales.rdl</Name>
+      <FullPath>06 - All Customers - Top 10 - Item Sales.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>07 - All Customers - Top 10 Balances.rdl</Name>
+      <FullPath>07 - All Customers - Top 10 Balances.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>08 - Finance - Actual vs. Budget for the last period.rdl</Name>
+      <FullPath>08 - Finance - Actual vs. Budget for the last period.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>09 - Finance - Finance entries for dimension 1.rdl</Name>
+      <FullPath>09 - Finance - Finance entries for dimension 1.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>10 - Finance - Finance entries for dimension 2.rdl</Name>
+      <FullPath>10 - Finance - Finance entries for dimension 2.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>11 - Actual vs. single budget for one dimension.rdl</Name>
+      <FullPath>11 - Actual vs. single budget for one dimension.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>12 - Actual vs. single budget.rdl</Name>
+      <FullPath>12 - Actual vs. single budget.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>13 - Turnover and Profit for Product Group.rdl</Name>
+      <FullPath>13 - Turnover and Profit for Product Group.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>14 - Turnover for Item Group.rdl</Name>
+      <FullPath>14 - Turnover for Item Group.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>15 - Dead items grouped by Item Group.rdl</Name>
+      <FullPath>15 - Dead items grouped by Item Group.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>16 - Product groups sale over time.rdl</Name>
+      <FullPath>16 - Product groups sale over time.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>17 - Item groups sale over time.rdl</Name>
+      <FullPath>17 - Item groups sale over time.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>18 - Single Customer.rdl</Name>
+      <FullPath>18 - Single Customer.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>19 - Single customer - Share of total item sales.rdl</Name>
+      <FullPath>19 - Single customer - Share of total item sales.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>20 - Single customer - Item statistics.rdl</Name>
+      <FullPath>20 - Single customer - Item statistics.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>21 - Single Item Statistics.rdl</Name>
+      <FullPath>21 - Single Item Statistics.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>22 - Single Item - Customer Statistics.rdl</Name>
+      <FullPath>22 - Single Item - Customer Statistics.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>SubReport_OneCustomer_AccountPrDate.rdl</Name>
+      <FullPath>SubReport_OneCustomer_AccountPrDate.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>SubReport_OneCustomer_Sales.rdl</Name>
+      <FullPath>SubReport_OneCustomer_Sales.rdl</FullPath>
+    </ProjectItem>
+  </Reports>
+  <Configurations>
+    <Configuration>
+      <Name>Debug</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetServerURL>http://localhost/ReportServer</TargetServerURL>
+        <TargetFolder>NavRptsEn</TargetFolder>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>DebugLocal</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetFolder>NavRptsEn</TargetFolder>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>Production</Name>
+      <Platform>Win32</Platform>
+      <Options>
+        <TargetFolder>NavRptsEn</TargetFolder>
+      </Options>
+    </Configuration>
+  </Configurations>
+</Project>

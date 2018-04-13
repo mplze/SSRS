@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="NavisionRS">
+      <DataSourceReference>NavisionRS</DataSourceReference>
+      <rd:DataSourceID>c3f062d5-c5a3-4f0a-9c0b-fb364199e641</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>2.5cm</BottomMargin>
+  <RightMargin>1.5cm</RightMargin>
+  <PageWidth>29.7cm</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="StartDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>StartDate</DataSetName>
+          <ValueField>startdate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Select From Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LastDate</DataSetName>
+          <ValueField>til</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Select To Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Budget">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>GetBudgets</DataSetName>
+          <ValueField>Name</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Select Budget:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>GetBudgets</DataSetName>
+          <ValueField>Name</ValueField>
+          <LabelField>Description</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>0.25cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox17">
+        <Left>11cm</Left>
+        <Top>2.25cm</Top>
+        <rd:DefaultName>textbox17</rd:DefaultName>
+        <ZIndex>4</ZIndex>
+        <Width>11.25cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>= "Last Period: " &amp;  DateAdd(DateInterval.Year,-1, Parameters!StartDate.Value) &amp; " - " &amp; DateAdd(DateInterval.Year,-1, Parameters!EndDate.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox9">
+        <Left>11cm</Left>
+        <Top>1.5cm</Top>
+        <rd:DefaultName>textbox9</rd:DefaultName>
+        <ZIndex>3</ZIndex>
+        <Width>11.25cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>= "Selected Period: " &amp; Parameters!StartDate.Value &amp; " - " &amp; Parameters!EndDate.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox11">
+        <Left>0.25cm</Left>
+        <Top>1.5cm</Top>
+        <rd:DefaultName>textbox11</rd:DefaultName>
+        <ZIndex>2</ZIndex>
+        <Width>8cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>="Budget: " &amp; Parameters!Budget.Label</Value>
+      </Textbox>
+      <Textbox Name="textbox2">
+        <Left>0.25cm</Left>
+        <Top>0.25cm</Top>
+        <rd:DefaultName>textbox2</rd:DefaultName>
+        <ZIndex>1</ZIndex>
+        <Width>25.75cm</Width>
+        <Style>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <FontSize>18pt</FontSize>
+          <BorderColor>
+            <Bottom>Black</Bottom>
+          </BorderColor>
+          <BackgroundColor>SteelBlue</BackgroundColor>
+          <Color>White</Color>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>1cm</Height>
+        <Value>8: Visualised differences for accounts – Last Year and Budget</Value>
+      </Textbox>
+      <Table Name="table1">
+        <ToolTip>Vælg periode og budget</ToolTip>
+        <Left>0.25cm</Left>
+        <DataSetName>FullSet</DataSetName>
+        <Top>3cm</Top>
+        <Width>25.77645cm</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Description">
+                      <rd:DefaultName>Description</rd:DefaultName>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIf((RowNumber("FullSet") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Description.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="LP">
+                      <rd:DefaultName>LP</rd:DefaultName>
+                      <ZIndex>6</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("FullSet") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!LP.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="CP">
+                      <rd:DefaultName>CP</rd:DefaultName>
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("FullSet") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!CP.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox20">
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>P</Format>
+                        <BackgroundColor>=IIf((RowNumber("FullSet") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <Color>= IIF(Fields!DebitCredit.Value&lt;&gt;0,
+iif(( Fields!CP.Value- Fields!LP.Value)&gt;0,"Red","Green"),"Black")</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=iif((Fields!CP.Value/Fields!LP.Value)&lt;&gt;"Infinity",iif( (Fields!CP.Value/Fields!LP.Value)&lt;&gt;"-Infinity",
+(Fields!CP.Value/Fields!LP.Value),0),0)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox12">
+                      <rd:DefaultName>textbox12</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("FullSet") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <Color>= IIF(Fields!DebitCredit.Value&lt;&gt;0,
+iif(( Fields!CP.Value- Fields!LP.Value)&gt;0,"Red","Green"),"Black")</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!CP.Value- Fields!LP.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="BP">
+                      <rd:DefaultName>BP</rd:DefaultName>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("FullSet") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!BP.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox7">
+                      <rd:DefaultName>textbox7</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>P</Format>
+                        <BackgroundColor>=IIf((RowNumber("FullSet") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <Color>= IIF(Fields!DebitCredit.Value&lt;&gt;0,
+iif(( Fields!CP.Value- Fields!BP.Value )&gt;0,"Red","Green"),"Black")</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=iif(((Fields!CP.Value- Fields!BP.Value)/ Fields!BP.Value)&lt;&gt;"Infinity",iif(((Fields!CP.Value- Fields!BP.Value)/ Fields!BP.Value)&lt;&gt;"-Infinity",(Fields!CP.Value- Fields!BP.Value)/ Fields!BP.Value,"0"),"0")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox15">
+                      <rd:DefaultName>textbox15</rd:DefaultName>
+                      <Style>
+                        <BorderStyle>
+                          <Left>None</Left>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>1pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BorderColor>
+                          <Left>White</Left>
+                        </BorderColor>
+                        <BackgroundColor>=IIf((RowNumber("FullSet") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <Color>= IIF(Fields!DebitCredit.Value&lt;&gt;0,
+iif(( Fields!CP.Value- Fields!BP.Value )&gt;0,"Red","Green"),"Black")</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!CP.Value- Fields!BP.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox1">
+                      <rd:DefaultName>textbox1</rd:DefaultName>
+                      <ZIndex>15</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Account</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <ZIndex>14</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Last Period</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <ZIndex>13</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Selected Period</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox8">
+                      <ZIndex>12</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Index</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <rd:DefaultName>textbox10</rd:DefaultName>
+                      <ZIndex>11</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Realised Difference</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <rd:DefaultName>textbox5</rd:DefaultName>
+                      <ZIndex>10</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Budget</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <ZIndex>9</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Budget Difference</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox14">
+                      <rd:DefaultName>textbox14</rd:DefaultName>
+                      <ZIndex>8</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Left>None</Left>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                          <Left>1pt</Left>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Left>White</Left>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Index</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>1cm</Height>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>6.75cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.25cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.5cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.5cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.77645cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.75cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.75cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.5cm</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>4.63492cm</Height>
+  </Body>
+  <PageHeader>
+    <ReportItems>
+      <Textbox Name="textbox26">
+        <Left>23.5cm</Left>
+        <Top>0.5cm</Top>
+        <rd:DefaultName>textbox26</rd:DefaultName>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63757cm</Height>
+        <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp;  Globals!TotalPages</Value>
+      </Textbox>
+      <Image Name="image1">
+        <Sizing>AutoSize</Sizing>
+        <Left>0.25cm</Left>
+        <MIMEType>image/gif</MIMEType>
+        <Width>3.80952cm</Width>
+        <Source>Embedded</Source>
+        <Style />
+        <Height>1.13757cm</Height>
+        <Value>microsoftgif</Value>
+      </Image>
+    </ReportItems>
+    <Height>0.49219in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageHeader>
+  <rd:ReportID>f7a4aa3e-09af-4a46-82f6-c3b370445a34</rd:ReportID>
+  <LeftMargin>1.5cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="microsoftgif">
+      <ImageData>R0lGODlhkAArAPcAAAAAAIAAAACAAICAAAAAgIAAgACAgMDAwMDcwKbK8AAymAAymwAzmAAzmQA0mgEymAEymQpszgttzgxtzg1uzxl10Sl+1DiI10eR2lea3Waj4Hat5IS15pO+6aPI7bLR8MLa89Hj9uDt+fD2/P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AP/78KCgpICAgP8AAAD/AP//AAAA//8A/wD//////yH5BAAAAAAALAAAAACQACsAhwAAAIAAAACAAICAAAAAgIAAgACAgMDAwMDcwKbK8AAymAAymwAzmAAzmQA0mgEymAEymQpszgttzgxtzg1uzxl10Sl+1DiI10eR2lea3Waj4Hat5IS15pO+6aPI7bLR8MLa89Hj9uDt+fD2/P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/78KCgpICAgP8AAAD/AP//AAAA//8A/wD//////wj+ACMIHEiwoMGDCBMqXMiwocOHECNKnEixosWLGDNq3Mixo8ePIEOKHEmypMmTKFOqXMmypcuXMGPKnEmzps2bOAV2AMGzJ4gLBDH47MkhwlAMOSVe4MCUgwWRIkhInUoC6UAQVKdyuJD1aVKHFbBSrWABg1kMFTZayDrVagSubKtqoDri68MOWUVE+EDVLcYMcasO9BA4AoamHDTYbVhhBNWtEaJO5Yg37gaBa+OGKHnBLFCFnc8urHA2rUHAUzdHyCwVBEexbItGIBy3Q1ifn1d3kExihAe/PjtE0ABCBFIMHhxP9W16IAa+bD/4FaghRNYQGQRe4Mm7N0/ry3n+GsaQvWJgEkVZs9WAIavACpVra6fqATyJCPHZjshN+3z5t/ax5UEEG5wXmF4YbHBBbhG1F1hR/bFlAQdUbVZBgJYRGBgIGOqXFoUVgqCcVHq9NeKDERo41YCeeSVRgQ+ql1VdsJFgG4YdcHBiXSkul5V0GQQoXHeXGebeBTuyB6JUI3zAYVY90cWTYqS5KBF0U/HGQXzdkfBBBFlpkJ9gEaA21QVdkpiVcAKZSYJeP5qGWFEB7jdQgNnNleV8U7m2UZf9dTBiiltl5aBWA23n06FTXRZgiQIxet+JrXWQQXN6NkpQjRDSJxCMUsmWkYwiLDliqYaC2puqJDR3Wpj+b8HqnHtLxuVBWlj2VhCnEQRYZITTWeQmCR7UOpUGud4X4Qe5fplQrX6y6mqmuuJn4GbdDUgQkRVk9Vl3rl40pgbGvhnBidg+xmtCNSoWQa11EQSdby5asFtgw4oaa1+Svlfha12Vu4GMthm67mpzwjWVnP8mSux/BlUQZFbGuitQhHVB26anG+X17owVUEtCBsMaxbHJy7mpmoZjvdfhY7NStUF3bA5H8V
+5UsVmrvhdJOqCxRY054b+scpBBjeipqu1qP5KHobEgMEyVBRgreZ1AJ5ZXIwgkZ8SqYvCm9SjKUg3YmIqu5WoxzipycDaUgDKt4ghPyegV0uhllOySUzsL9COYVLkrcla3RkYVgxeeN4LgKpIQgmmDVwg5VZCWG+xE3ZVoalqSKuitc2lyjRldEY/ZmwdWPncgz0KxJcLa+TkbQQUcdGfXBeRygIGVYB3GwQaXv+c7UwomhDvxDC6m/PLMN+/889BHL/301Fdv/fXYZ6/99twzr8D34Icv/vjkl2/++einr/767LdffkAAOw==</ImageData>
+      <MIMEType>image/gif</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="DistinctYears">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT DISTINCT DATEPART(year, [Posting Date]) AS year
+FROM         [CRONUS International Ltd_$G_L Entry]
+ORDER BY DATEPART(year, [Posting Date]) DESC</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="year">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>year</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FullSet">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     
+	Accounts.No_, 
+	Accounts.Description AS Description, 
+	Accounts.DebitCredit AS DebitCredit, 
+	CP.CP,
+	SUM(BPosts.Amount) as BP,
+	LP.LP
+FROM         
+(
+	SELECT   No_, 
+		Name, 
+		No_ + ' - ' + Name AS Description, 
+		[Debit_Credit] AS DebitCredit
+               FROM          
+		[CRONUS International Ltd_$G_L Account]
+               WHERE      
+		([Account Type] = 0) 		
+	
+) Accounts 
+right OUTER JOIN
+(
+	SELECT     
+		[CRONUS International Ltd_$G_L Entry].[G_L Account No_] AS CPAccount, 
+		sum([CRONUS International Ltd_$G_L Entry].Amount) as CP
+                            
+                FROM          
+		[CRONUS International Ltd_$G_L Entry] 
+	INNER JOIN
+                            [CRONUS International Ltd_$G_L Account] 
+		ON 
+                            [CRONUS International Ltd_$G_L Entry].[G_L Account No_] = [CRONUS International Ltd_$G_L Account].No_
+               WHERE      
+		(DATEPART(hour, [CRONUS International Ltd_$G_L Entry].[Posting Date]) = 0) 
+		AND 
+                            ([CRONUS International Ltd_$G_L Account].[Account Type] = 0) 
+		AND
+		([CRONUS International Ltd_$G_L Entry].[Posting Date] &lt;= CONVERT(datetime, @EndDate, 103))
+		AND
+		( CONVERT(datetime, @StartDate, 103) &lt;=  [CRONUS International Ltd_$G_L Entry].[Posting Date])
+		AND
+		[CRONUS International Ltd_$G_L Entry].Amount&lt;&gt;0
+		AND
+		([CRONUS International Ltd_$G_L Account].[Income_Balance] = 0) 
+	group by
+		[CRONUS International Ltd_$G_L Entry].[G_L Account No_] 
+		
+)CP 
+ON Accounts.No_ = CP.CPAccount 
+left outer join
+(
+SELECT     
+	[CRONUS International Ltd_$G_L Account].No_ as AccountNo, 
+	[CRONUS International Ltd_$G_L Budget Entry].Amount
+FROM         
+	[CRONUS International Ltd_$G_L Budget Entry] 
+	INNER JOIN
+              [CRONUS International Ltd_$G_L Account] 
+	ON 
+              [CRONUS International Ltd_$G_L Budget Entry].[G_L Account No_] = [CRONUS International Ltd_$G_L Account].No_
+WHERE     
+	([CRONUS International Ltd_$G_L Budget Entry].[Budget Name] = @Budget) 
+	AND 
+	[CRONUS International Ltd_$G_L Budget Entry] .[Date] &lt;= CONVERT(datetime, @EndDate, 103)
+	AND
+	( CONVERT(datetime, @StartDate, 103) &lt;= [CRONUS International Ltd_$G_L Budget Entry] .[Date])
+	AND 
+              ([CRONUS International Ltd_$G_L Account].[Account Type] = 0) 
+)BPosts
+On Accounts.No_ = BPosts.AccountNo
+
+LEFT OUTER JOIN
+(
+	SELECT     
+		[CRONUS International Ltd_$G_L Entry].[G_L Account No_] AS LYAccount, 
+		Sum([CRONUS International Ltd_$G_L Entry].Amount) as LP
+
+               FROM          
+		[CRONUS International Ltd_$G_L Entry] 
+	INNER JOIN
+                             [CRONUS International Ltd_$G_L Account] 
+	ON 
+                             [CRONUS International Ltd_$G_L Entry].[G_L Account No_] = [CRONUS International Ltd_$G_L Account].No_
+              WHERE      
+		(DATEPART(hour, [CRONUS International Ltd_$G_L Entry].[Posting Date]) = 0) 
+		AND 
+                            ([CRONUS International Ltd_$G_L Account].[Account Type] = 0) 
+		AND 
+                            ([CRONUS International Ltd_$G_L Entry].[Posting Date]) &lt;= DateAdd(year,-1,CONVERT(datetime, @EndDate, 103))
+		AND
+		(DateAdd(year,-1,CONVERT(datetime, @StartDate, 103)) &lt;= [CRONUS International Ltd_$G_L Entry].[Posting Date])
+	group by
+		[CRONUS International Ltd_$G_L Entry].[G_L Account No_]		
+) LP 
+ON Accounts.No_ = LP.LYAccount
+GROUP BY 
+	Accounts.No_, 
+	Accounts.Description, 
+	Accounts.DebitCredit,
+	LP.LP,
+	CP.CP</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@StartDate">
+            <Value>=Parameters!StartDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Budget">
+            <Value>=Parameters!Budget.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="No_">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="Description">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="DebitCredit">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>DebitCredit</DataField>
+        </Field>
+        <Field Name="CP">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>CP</DataField>
+        </Field>
+        <Field Name="BP">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>BP</DataField>
+        </Field>
+        <Field Name="LP">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>LP</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LastDate">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     TOP 1 [Posting Date] AS til
+FROM         [CRONUS International Ltd_$G_L Entry]
+ORDER BY [Posting Date] DESC</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="til">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>til</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GetBudgets">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     Name, Description, Name + ' - ' + Description AS Beskr
+FROM         [CRONUS International Ltd_$G_L Budget Name]</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Name">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="Description">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Beskr">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Beskr</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="StartDate">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     TOP 1 [Starting Date] AS startdate
+FROM         [CRONUS International Ltd_$Accounting Period]
+WHERE     
+	([New Fiscal Year] = 1)
+	AND
+	[Starting Date] &lt;= (
+				SELECT     TOP 1 
+						[Posting Date]
+				FROM         
+					[CRONUS International Ltd_$G_L Entry]
+				ORDER BY 
+					[Posting Date] DESC
+			)
+
+ORDER BY [Starting Date] DESC</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="startdate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>startdate</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DataSet1">
+      <Query>
+        <CommandText>SELECT     No_, Name, [Account Type], Income_Balance, Debit_Credit
+FROM         [CRONUS International Ltd_$G_L Account]
+WHERE     (Income_Balance = 0)</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="No_">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="Name">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="Account_Type">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Account Type</DataField>
+        </Field>
+        <Field Name="Income_Balance">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Income_Balance</DataField>
+        </Field>
+        <Field Name="Debit_Credit">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Debit_Credit</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code />
+  <Width>26.03968cm</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Description>Color visualisation of differences between the chosen period and the previous year for a selected budget.</Description>
+  <Language>en-GB</Language>
+  <PageFooter>
+    <ReportItems>
+      <Textbox Name="textbox13">
+        <Left>0.25cm</Left>
+        <ZIndex>1</ZIndex>
+        <Action>
+          <Hyperlink>http://www.tectura.dk</Hyperlink>
+        </Action>
+        <Width>7.25cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontSize>6pt</FontSize>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>Developed by Tectura (Denmark) A/S</Value>
+      </Textbox>
+      <Textbox Name="textbox25">
+        <Left>20cm</Left>
+        <rd:DefaultName>textbox25</rd:DefaultName>
+        <Width>6cm</Width>
+        <Style>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontSize>6pt</FontSize>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>This report should be printed using landscape view</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.19687in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageFooter>
+  <TopMargin>2.5cm</TopMargin>
+  <PageHeight>21cm</PageHeight>
+</Report>

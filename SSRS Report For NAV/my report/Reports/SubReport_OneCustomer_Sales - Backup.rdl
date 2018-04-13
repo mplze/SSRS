@@ -1,0 +1,1211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="NavisionRS">
+      <DataSourceReference>NavisionRS</DataSourceReference>
+      <rd:DataSourceID>8b80f615-82b7-442a-9750-1d34fa02b8b2</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>2.5cm</BottomMargin>
+  <RightMargin>1.5cm</RightMargin>
+  <PageWidth>21cm</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="customer">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>AllCustomers</DataSetName>
+          <ValueField>No_</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Customer:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>AllCustomers</DataSetName>
+          <ValueField>No_</ValueField>
+          <LabelField>CustomerName</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>0.25cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <List Name="List1">
+        <Sorting>
+          <SortBy>
+            <SortExpression>=Fields!Customer.Value</SortExpression>
+            <Direction>Ascending</Direction>
+          </SortBy>
+        </Sorting>
+        <ReportItems>
+          <Chart Name="chart2">
+            <Legend>
+              <Visible>true</Visible>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+              <Position>BottomLeft</Position>
+              <Layout>Row</Layout>
+            </Legend>
+            <Subtype>Plain</Subtype>
+            <Title>
+              <Caption>Profit</Caption>
+            </Title>
+            <Height>7.61905cm</Height>
+            <CategoryAxis>
+              <Axis>
+                <Title />
+                <MajorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MajorGridLines>
+                <MinorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MinorGridLines>
+                <MajorTickMarks>Outside</MajorTickMarks>
+                <Min>0</Min>
+                <Visible>true</Visible>
+              </Axis>
+            </CategoryAxis>
+            <PointWidth>0</PointWidth>
+            <Left>0.25cm</Left>
+            <ThreeDProperties>
+              <Rotation>30</Rotation>
+              <Inclination>30</Inclination>
+              <Shading>Simple</Shading>
+              <WallThickness>50</WallThickness>
+            </ThreeDProperties>
+            <DataSetName>Sales</DataSetName>
+            <SeriesGroupings>
+              <SeriesGrouping>
+                <DynamicSeries>
+                  <Grouping Name="chart2_SeriesGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!YEAR.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Grouping>
+                  <Label>=Fields!YEAR.Value</Label>
+                </DynamicSeries>
+              </SeriesGrouping>
+            </SeriesGroupings>
+            <Top>10.75cm</Top>
+            <PlotArea>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+                <BackgroundColor>LightGrey</BackgroundColor>
+              </Style>
+            </PlotArea>
+            <ValueAxis>
+              <Axis>
+                <Title />
+                <MajorGridLines>
+                  <ShowGridLines>true</ShowGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MajorGridLines>
+                <MinorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MinorGridLines>
+                <MajorTickMarks>Outside</MajorTickMarks>
+                <Min>0</Min>
+                <Margin>true</Margin>
+                <Visible>true</Visible>
+                <Scalar>true</Scalar>
+              </Axis>
+            </ValueAxis>
+            <ZIndex>2</ZIndex>
+            <Type>Column</Type>
+            <CategoryGroupings>
+              <CategoryGrouping>
+                <DynamicCategories>
+                  <Grouping Name="chart2_CategoryGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!MONTHNAME.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Grouping>
+                  <Label>=Fields!MONTHNAME.Value</Label>
+                </DynamicCategories>
+              </CategoryGrouping>
+            </CategoryGroupings>
+            <Palette>Excel</Palette>
+            <ChartData>
+              <ChartSeries>
+                <DataPoints>
+                  <DataPoint>
+                    <DataValues>
+                      <DataValue>
+                        <Value>=Sum(Fields!Profit.Value)</Value>
+                      </DataValue>
+                    </DataValues>
+                    <DataLabel />
+                    <Marker>
+                      <Size>6pt</Size>
+                    </Marker>
+                  </DataPoint>
+                </DataPoints>
+              </ChartSeries>
+            </ChartData>
+            <Style>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </Chart>
+          <Chart Name="chart1">
+            <Legend>
+              <Visible>true</Visible>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+              <Position>BottomLeft</Position>
+              <Layout>Row</Layout>
+            </Legend>
+            <Subtype>Plain</Subtype>
+            <Title>
+              <Caption>Sales</Caption>
+              <Style>
+                <FontSize>12pt</FontSize>
+              </Style>
+            </Title>
+            <Height>7.61905cm</Height>
+            <CategoryAxis>
+              <Axis>
+                <Title />
+                <MajorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MajorGridLines>
+                <MinorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MinorGridLines>
+                <MajorTickMarks>Outside</MajorTickMarks>
+                <Min>0</Min>
+                <Visible>true</Visible>
+              </Axis>
+            </CategoryAxis>
+            <PointWidth>0</PointWidth>
+            <ThreeDProperties>
+              <Rotation>30</Rotation>
+              <Inclination>30</Inclination>
+              <Shading>Simple</Shading>
+              <WallThickness>50</WallThickness>
+            </ThreeDProperties>
+            <DataSetName>Sales</DataSetName>
+            <SeriesGroupings>
+              <SeriesGrouping>
+                <DynamicSeries>
+                  <Grouping Name="chart1_SeriesGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!YEAR.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Grouping>
+                  <Label>=Fields!YEAR.Value</Label>
+                </DynamicSeries>
+              </SeriesGrouping>
+            </SeriesGroupings>
+            <Top>3cm</Top>
+            <PlotArea>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+                <BackgroundColor>LightGrey</BackgroundColor>
+              </Style>
+            </PlotArea>
+            <ValueAxis>
+              <Axis>
+                <Title>
+                  <Position>Far</Position>
+                </Title>
+                <MajorGridLines>
+                  <ShowGridLines>true</ShowGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MajorGridLines>
+                <MinorGridLines>
+                  <Style>
+                    <BorderStyle>
+                      <Default>Solid</Default>
+                    </BorderStyle>
+                  </Style>
+                </MinorGridLines>
+                <MajorTickMarks>Outside</MajorTickMarks>
+                <Min>0</Min>
+                <Margin>true</Margin>
+                <Visible>true</Visible>
+                <Scalar>true</Scalar>
+              </Axis>
+            </ValueAxis>
+            <ZIndex>1</ZIndex>
+            <Type>Column</Type>
+            <Width>17cm</Width>
+            <CategoryGroupings>
+              <CategoryGrouping>
+                <DynamicCategories>
+                  <Grouping Name="chart1_CategoryGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!MONTHNAME.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Grouping>
+                  <Label>=Fields!MONTHNAME.Value</Label>
+                </DynamicCategories>
+              </CategoryGrouping>
+            </CategoryGroupings>
+            <Palette>Excel</Palette>
+            <ChartData>
+              <ChartSeries>
+                <DataPoints>
+                  <DataPoint>
+                    <DataValues>
+                      <DataValue>
+                        <Value>=Sum(Fields!Sales_Amount_Actual_.Value)</Value>
+                      </DataValue>
+                    </DataValues>
+                    <DataLabel />
+                    <Marker />
+                  </DataPoint>
+                </DataPoints>
+              </ChartSeries>
+            </ChartData>
+            <Style>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </Chart>
+          <Table Name="table1">
+            <DataSetName>Sales</DataSetName>
+            <TableGroups>
+              <TableGroup>
+                <Header>
+                  <TableRows>
+                    <TableRow>
+                      <TableCells>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="YEAR">
+                              <rd:DefaultName>YEAR</rd:DefaultName>
+                              <ZIndex>23</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <BackgroundColor>LightBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>=Fields!YEAR.Value</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox9">
+                              <rd:DefaultName>textbox9</rd:DefaultName>
+                              <ZIndex>22</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontFamily>Times New Roman</FontFamily>
+                                <FontWeight>700</FontWeight>
+                                <FontSize>12pt</FontSize>
+                                <BackgroundColor>LightBlue</BackgroundColor>
+                                <Color>DarkRed</Color>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox10">
+                              <rd:DefaultName>textbox10</rd:DefaultName>
+                              <ZIndex>21</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontFamily>Times New Roman</FontFamily>
+                                <FontWeight>700</FontWeight>
+                                <FontSize>12pt</FontSize>
+                                <BackgroundColor>LightBlue</BackgroundColor>
+                                <Color>DarkRed</Color>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox19">
+                              <rd:DefaultName>textbox19</rd:DefaultName>
+                              <ZIndex>20</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontFamily>Times New Roman</FontFamily>
+                                <FontWeight>700</FontWeight>
+                                <FontSize>12pt</FontSize>
+                                <BackgroundColor>LightBlue</BackgroundColor>
+                                <Color>DarkRed</Color>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="Sales_Amount_Actual__3">
+                              <rd:DefaultName>Sales_Amount_Actual__3</rd:DefaultName>
+                              <ZIndex>19</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <Format>N0</Format>
+                                <BackgroundColor>LightBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <Language>da</Language>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>=Sum(Fields!Sales_Amount_Actual_.Value)</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox11">
+                              <rd:DefaultName>textbox11</rd:DefaultName>
+                              <ZIndex>18</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <Format>N0</Format>
+                                <BackgroundColor>LightBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <Language>da</Language>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>=Sum(Fields!Profit.Value)</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                      </TableCells>
+                      <Height>0.60952cm</Height>
+                    </TableRow>
+                  </TableRows>
+                </Header>
+                <Sorting>
+                  <SortBy>
+                    <SortExpression>=Fields!YEAR.Value</SortExpression>
+                    <Direction>Ascending</Direction>
+                  </SortBy>
+                </Sorting>
+                <Grouping Name="table1_YEAR">
+                  <GroupExpressions>
+                    <GroupExpression>=Fields!YEAR.Value</GroupExpression>
+                  </GroupExpressions>
+                </Grouping>
+              </TableGroup>
+              <TableGroup>
+                <Visibility>
+                  <ToggleItem>YEAR</ToggleItem>
+                  <Hidden>true</Hidden>
+                </Visibility>
+                <Header>
+                  <TableRows>
+                    <TableRow>
+                      <TableCells>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox12">
+                              <rd:DefaultName>textbox12</rd:DefaultName>
+                              <ZIndex>17</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontWeight>700</FontWeight>
+                                <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="QUARTER">
+                              <rd:DefaultName>QUARTER</rd:DefaultName>
+                              <ZIndex>16</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontWeight>700</FontWeight>
+                                <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>=”Q” &amp; Fields!QUARTER.Value</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox13">
+                              <rd:DefaultName>textbox13</rd:DefaultName>
+                              <ZIndex>15</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontWeight>700</FontWeight>
+                                <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox20">
+                              <rd:DefaultName>textbox20</rd:DefaultName>
+                              <ZIndex>14</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontWeight>700</FontWeight>
+                                <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="Sales_Amount_Actual_">
+                              <rd:DefaultName>Sales_Amount_Actual_</rd:DefaultName>
+                              <ZIndex>13</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontWeight>700</FontWeight>
+                                <Format>N0</Format>
+                                <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <Language>da</Language>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>=Sum(Fields!Sales_Amount_Actual_.Value)</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox14">
+                              <rd:DefaultName>textbox14</rd:DefaultName>
+                              <ZIndex>12</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontWeight>700</FontWeight>
+                                <Format>N0</Format>
+                                <BackgroundColor>CornflowerBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <Language>da</Language>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>=Sum(Fields!Profit.Value)</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                      </TableCells>
+                      <Height>0.60952cm</Height>
+                    </TableRow>
+                  </TableRows>
+                </Header>
+                <Sorting>
+                  <SortBy>
+                    <SortExpression>=Fields!QUARTER.Value</SortExpression>
+                    <Direction>Ascending</Direction>
+                  </SortBy>
+                </Sorting>
+                <Grouping Name="table1_QUARTER">
+                  <GroupExpressions>
+                    <GroupExpression>=Fields!QUARTER.Value</GroupExpression>
+                  </GroupExpressions>
+                </Grouping>
+              </TableGroup>
+              <TableGroup>
+                <Visibility>
+                  <ToggleItem>QUARTER</ToggleItem>
+                  <Hidden>true</Hidden>
+                </Visibility>
+                <Header>
+                  <TableRows>
+                    <TableRow>
+                      <TableCells>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox15">
+                              <rd:DefaultName>textbox15</rd:DefaultName>
+                              <ZIndex>11</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <BackgroundColor>AliceBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox16">
+                              <rd:DefaultName>textbox16</rd:DefaultName>
+                              <ZIndex>10</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <BackgroundColor>AliceBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="MONTHNAME">
+                              <CanShrink>true</CanShrink>
+                              <rd:DefaultName>MONTHNAME</rd:DefaultName>
+                              <ZIndex>9</ZIndex>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <BackgroundColor>AliceBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>= Fields!MONTHNAME.Value</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox23">
+                              <ZIndex>8</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <FontWeight>700</FontWeight>
+                                <BackgroundColor>AliceBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value />
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="Sales_Amount_Actual__1">
+                              <rd:DefaultName>Sales_Amount_Actual__1</rd:DefaultName>
+                              <ZIndex>7</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <Format>N0</Format>
+                                <BackgroundColor>AliceBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <Language>da</Language>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>=Sum(Fields!Sales_Amount_Actual_.Value)</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                        <TableCell>
+                          <ReportItems>
+                            <Textbox Name="textbox17">
+                              <rd:DefaultName>textbox17</rd:DefaultName>
+                              <ZIndex>6</ZIndex>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <Format>N0</Format>
+                                <BackgroundColor>AliceBlue</BackgroundColor>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <Language>da</Language>
+                              </Style>
+                              <CanGrow>true</CanGrow>
+                              <Value>=Sum(Fields!Profit.Value)</Value>
+                            </Textbox>
+                          </ReportItems>
+                        </TableCell>
+                      </TableCells>
+                      <Height>0.60952cm</Height>
+                    </TableRow>
+                  </TableRows>
+                </Header>
+                <Grouping Name="table1_MONTHNAME">
+                  <GroupExpressions>
+                    <GroupExpression>=Fields!MONTH.Value</GroupExpression>
+                  </GroupExpressions>
+                </Grouping>
+              </TableGroup>
+            </TableGroups>
+            <Width>16.95169cm</Width>
+            <Details>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox3">
+                          <rd:DefaultName>textbox3</rd:DefaultName>
+                          <ZIndex>5</ZIndex>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BackgroundColor>=IIf((RowNumber("Sales") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox5">
+                          <rd:DefaultName>textbox5</rd:DefaultName>
+                          <ZIndex>4</ZIndex>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BackgroundColor>=IIf((RowNumber("Sales") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox21">
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <FontWeight>700</FontWeight>
+                            <BackgroundColor>=IIf((RowNumber("Sales") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="BilagsNr">
+                          <CanShrink>true</CanShrink>
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BackgroundColor>=IIf((RowNumber("Sales") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!DocumentNo.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Sales_Amount_Actual__2">
+                          <rd:DefaultName>Sales_Amount_Actual__2</rd:DefaultName>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <Format>N0</Format>
+                            <BackgroundColor>=IIf((RowNumber("Sales") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <Language>da</Language>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Sales_Amount_Actual_.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="DB">
+                          <rd:DefaultName>DB</rd:DefaultName>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <Format>N0</Format>
+                            <BackgroundColor>=IIf((RowNumber("Sales") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <Language>da</Language>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Profit.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.53333cm</Height>
+                </TableRow>
+              </TableRows>
+              <Visibility>
+                <ToggleItem>MONTHNAME</ToggleItem>
+                <Hidden>true</Hidden>
+              </Visibility>
+            </Details>
+            <Style>
+              <BorderStyle>
+                <Top>Solid</Top>
+              </BorderStyle>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox2">
+                          <rd:DefaultName>textbox2</rd:DefaultName>
+                          <ZIndex>29</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <TextAlign>Left</TextAlign>
+                            <BorderWidth>
+                              <Bottom>2pt</Bottom>
+                            </BorderWidth>
+                            <FontWeight>900</FontWeight>
+                            <BorderColor>
+                              <Bottom>Black</Bottom>
+                            </BorderColor>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Year</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox4">
+                          <rd:DefaultName>textbox4</rd:DefaultName>
+                          <ZIndex>28</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <TextAlign>Left</TextAlign>
+                            <BorderWidth>
+                              <Bottom>2pt</Bottom>
+                            </BorderWidth>
+                            <FontWeight>900</FontWeight>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Quarter</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox6">
+                          <rd:DefaultName>textbox6</rd:DefaultName>
+                          <ZIndex>27</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <TextAlign>Left</TextAlign>
+                            <BorderWidth>
+                              <Bottom>2pt</Bottom>
+                            </BorderWidth>
+                            <FontWeight>900</FontWeight>
+                            <BorderColor>
+                              <Bottom>Black</Bottom>
+                            </BorderColor>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Month</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox18">
+                          <rd:DefaultName>textbox18</rd:DefaultName>
+                          <ZIndex>26</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <TextAlign>Right</TextAlign>
+                            <BorderWidth>
+                              <Bottom>2pt</Bottom>
+                            </BorderWidth>
+                            <FontWeight>900</FontWeight>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Document No.</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox7">
+                          <rd:DefaultName>textbox7</rd:DefaultName>
+                          <ZIndex>25</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <TextAlign>Right</TextAlign>
+                            <BorderWidth>
+                              <Bottom>2pt</Bottom>
+                            </BorderWidth>
+                            <FontWeight>900</FontWeight>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Total Item Sales</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox8">
+                          <rd:DefaultName>textbox8</rd:DefaultName>
+                          <ZIndex>24</ZIndex>
+                          <Style>
+                            <BorderStyle>
+                              <Bottom>Solid</Bottom>
+                            </BorderStyle>
+                            <TextAlign>Right</TextAlign>
+                            <BorderWidth>
+                              <Bottom>2pt</Bottom>
+                            </BorderWidth>
+                            <FontWeight>900</FontWeight>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>Total Profit</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.53333cm</Height>
+                </TableRow>
+              </TableRows>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+            </Header>
+            <TableColumns>
+              <TableColumn>
+                <Width>2.2541cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2.44078cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2.50681cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>2.75cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>3.5cm</Width>
+              </TableColumn>
+              <TableColumn>
+                <Width>3.5cm</Width>
+              </TableColumn>
+            </TableColumns>
+            <Height>2.89522cm</Height>
+          </Table>
+        </ReportItems>
+        <DataSetName>Sales</DataSetName>
+        <Style>
+          <FontFamily>Times New Roman</FontFamily>
+          <FontWeight>900</FontWeight>
+          <FontSize>18pt</FontSize>
+          <Color>Maroon</Color>
+        </Style>
+        <Grouping Name="list1_Kunde">
+          <PageBreakAtEnd>true</PageBreakAtEnd>
+          <GroupExpressions>
+            <GroupExpression>=Fields!Customer.Value</GroupExpression>
+          </GroupExpressions>
+        </Grouping>
+      </List>
+    </ReportItems>
+    <Height>18.75cm</Height>
+  </Body>
+  <PageHeader>
+    <ReportItems>
+      <Image Name="image1">
+        <Sizing>AutoSize</Sizing>
+        <MIMEType />
+        <Width>3.80952cm</Width>
+        <Source>External</Source>
+        <Style />
+        <Height>1.13757cm</Height>
+        <Value>microsoftgif.gif</Value>
+      </Image>
+    </ReportItems>
+    <Height>0.49219in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageHeader>
+  <rd:ReportID>4cdacd59-261b-423d-b32f-58d618855129</rd:ReportID>
+  <LeftMargin>1.5cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="microsoftgif">
+      <ImageData>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</ImageData>
+      <MIMEType>image/gif</MIMEType>
+    </EmbeddedImage>
+    <EmbeddedImage Name="bitmap1">
+      <ImageData>Qk32BAAAAAAAAHYAAAAoAAAAMAAAADAAAAABAAQAAAAAAIAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAMDAwACAgIAAAAD/AAD/AAAA//8A/wAAAP8A/wD//wAA////AP//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////w==</ImageData>
+      <MIMEType>image/bmp</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="Sales">
+      <Query>
+        <CommandText>SELECT     [CRONUS International Ltd_$Customer].No_ + ' ' + [CRONUS International Ltd_$Customer].Name AS Customer, 
+                      [CRONUS International Ltd_$Value Entry].[Document No_] AS DocumentNo, [CRONUS International Ltd_$Value Entry].[Posting Date], DATEPART(Year, 
+                      [CRONUS International Ltd_$Value Entry].[Posting Date]) AS YEAR, DATEPART(Quarter, [CRONUS International Ltd_$Value Entry].[Posting Date]) AS QUARTER, 
+                      DATENAME(Month, [CRONUS International Ltd_$Value Entry].[Posting Date]) AS MONTHNAME, DATEPART(Month, 
+                      [CRONUS International Ltd_$Value Entry].[Posting Date]) AS MONTH, SUM([CRONUS International Ltd_$Value Entry].[Sales Amount (Actual)]) 
+                      AS [Sales Amount(Actual)], SUM([CRONUS International Ltd_$Value Entry].[Cost Amount (Actual)]) AS [Cost Amount(Actual)], 
+                      SUM([CRONUS International Ltd_$Value Entry].Adjustment) AS Adjustment, [CRONUS International Ltd_$Customer].Address, 
+                      SUM([CRONUS International Ltd_$Value Entry].[Sales Amount (Actual)] + [CRONUS International Ltd_$Value Entry].[Cost Amount (Actual)] + [CRONUS International Ltd_$Value Entry].Adjustment)
+                       AS Profit, [CRONUS International Ltd_$Customer].City, [CRONUS International Ltd_$Customer].[Language Code]
+FROM         [CRONUS International Ltd_$Value Entry] INNER JOIN
+                      [CRONUS International Ltd_$Customer] ON [CRONUS International Ltd_$Value Entry].[Source No_] = [CRONUS International Ltd_$Customer].No_
+WHERE     ([CRONUS International Ltd_$Value Entry].[Item Ledger Entry Type] = 1) AND ([CRONUS International Ltd_$Value Entry].[Expected Cost] &lt;&gt; 1) AND 
+                      ([CRONUS International Ltd_$Value Entry].[Invoiced Quantity] &lt;&gt; 0) AND ([CRONUS International Ltd_$Customer].No_ = @customer)
+GROUP BY [CRONUS International Ltd_$Customer].No_ + ' ' + [CRONUS International Ltd_$Customer].Name, [CRONUS International Ltd_$Value Entry].[Document No_], 
+                      [CRONUS International Ltd_$Value Entry].[Posting Date], DATEPART(Year, [CRONUS International Ltd_$Value Entry].[Posting Date]), DATEPART(Quarter, 
+                      [CRONUS International Ltd_$Value Entry].[Posting Date]), DATENAME(Month, [CRONUS International Ltd_$Value Entry].[Posting Date]), 
+                      [CRONUS International Ltd_$Customer].Address, [CRONUS International Ltd_$Customer].City, [CRONUS International Ltd_$Customer].[Language Code]
+ORDER BY DATEPART(Year, [CRONUS International Ltd_$Value Entry].[Posting Date]) DESC, DATEPART(Month, [CRONUS International Ltd_$Value Entry].[Posting Date])</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@customer">
+            <Value>=Parameters!customer.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Customer">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Customer</DataField>
+        </Field>
+        <Field Name="DocumentNo">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>DocumentNo</DataField>
+        </Field>
+        <Field Name="Posting_Date">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>Posting Date</DataField>
+        </Field>
+        <Field Name="YEAR">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>YEAR</DataField>
+        </Field>
+        <Field Name="QUARTER">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>QUARTER</DataField>
+        </Field>
+        <Field Name="MONTHNAME">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>MONTHNAME</DataField>
+        </Field>
+        <Field Name="MONTH">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>MONTH</DataField>
+        </Field>
+        <Field Name="Sales_Amount_Actual_">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Sales Amount(Actual)</DataField>
+        </Field>
+        <Field Name="Cost_Amount_Actual_">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Cost Amount(Actual)</DataField>
+        </Field>
+        <Field Name="Adjustment">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>Adjustment</DataField>
+        </Field>
+        <Field Name="Address">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Address</DataField>
+        </Field>
+        <Field Name="Profit">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Profit</DataField>
+        </Field>
+        <Field Name="City">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>City</DataField>
+        </Field>
+        <Field Name="Language_Code">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Language Code</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="AllCustomers">
+      <Query>
+        <CommandText>SELECT     No_, No_ + ' - ' + Name AS CustomerName
+FROM         [CRONUS International Ltd_$Customer]</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="No_">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="CustomerName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>CustomerName</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Width>17.25cm</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-GB</Language>
+  <PageFooter>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <Action>
+          <Hyperlink>http://www.tectura.dk</Hyperlink>
+        </Action>
+        <Width>7.25cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontSize>6pt</FontSize>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>Developed by Tectura (Denmark) A/S</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.19687in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageFooter>
+  <TopMargin>2.5cm</TopMargin>
+  <PageHeight>29.7cm</PageHeight>
+</Report>

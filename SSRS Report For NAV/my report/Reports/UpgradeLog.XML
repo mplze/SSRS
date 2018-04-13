@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="NavRptsEn">
+</Property><Property Name="Solution File" Value="C:\Program Files (x86)\Microsoft SQL Server Report Packs\Microsoft SQL Server Report Pack for Navision 4.0\Reports\NavRptsEn.sln">
+</Property><Property Name="Date" Value="10 August 2012">
+</Property><Property Name="Time" Value="15:20">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="NavRptsEn.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="NavRptsEn.sln" Description="Converted">
+</Event></UpgradeLog>

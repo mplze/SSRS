@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="NavisionRS">
+      <DataSourceReference>NavisionRS</DataSourceReference>
+      <rd:DataSourceID>ca6a888e-8fcd-4d6b-a4cb-01ac7900508f</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>2.5cm</BottomMargin>
+  <RightMargin>1.5cm</RightMargin>
+  <PageWidth>21cm</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="DimType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Dimensions</DataSetName>
+          <ValueField>code</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Select Dimension Type:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Dimensions</DataSetName>
+          <ValueField>code</ValueField>
+          <LabelField>code</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="DimValue">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DimensionValues</DataSetName>
+          <ValueField>Code</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Select Dimension</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DimensionValues</DataSetName>
+          <ValueField>Code</ValueField>
+          <LabelField>Beskr</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="DateFrom">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LastEntry</DataSetName>
+          <ValueField>FromPostingDate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Select From Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="DateTo">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LastEntry</DataSetName>
+          <ValueField>ToPostingDate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Select To Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Budget">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>GetBudgets</DataSetName>
+          <ValueField>Name</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Select Budget Model:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>GetBudgets</DataSetName>
+          <ValueField>Name</ValueField>
+          <LabelField>budget</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>0.25cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox8">
+        <Top>3cm</Top>
+        <rd:DefaultName>textbox8</rd:DefaultName>
+        <ZIndex>4</ZIndex>
+        <Width>15.75cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>="Dimension type: " &amp; Parameters!DimType.Label &amp; " Dimension: " &amp; Parameters!DimValue.Label</Value>
+      </Textbox>
+      <Textbox Name="textbox7">
+        <Top>2.25cm</Top>
+        <rd:DefaultName>textbox7</rd:DefaultName>
+        <ZIndex>3</ZIndex>
+        <Width>7cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>="Budget model: " &amp; Parameters!Budget.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox6">
+        <Top>1.5cm</Top>
+        <rd:DefaultName>textbox6</rd:DefaultName>
+        <ZIndex>2</ZIndex>
+        <Width>12.75cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>="Period: " &amp; Parameters!DateFrom.Value &amp; " - " &amp;  Parameters!DateTo.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox5">
+        <rd:DefaultName>textbox5</rd:DefaultName>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <FontSize>18pt</FontSize>
+          <BorderColor>
+            <Bottom>Black</Bottom>
+          </BorderColor>
+          <BackgroundColor>SteelBlue</BackgroundColor>
+          <Color>White</Color>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>1cm</Height>
+        <Value>11: Actual vs. Budget for one dimension</Value>
+      </Textbox>
+      <Table Name="table1">
+        <DataSetName>DataSet1</DataSetName>
+        <Top>3.75cm</Top>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Kontoplan">
+                      <rd:DefaultName>Kontoplan</rd:DefaultName>
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIf((RowNumber("DataSet1") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!AccountNo.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Name">
+                      <rd:DefaultName>Name</rd:DefaultName>
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>C</Format>
+                        <BackgroundColor>=IIf((RowNumber("DataSet1") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>= Fields!Name.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Postings">
+                      <rd:DefaultName>Postings</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("DataSet1") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Entries.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Budgets">
+                      <rd:DefaultName>Budgets</rd:DefaultName>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("DataSet1") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Budgets.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="afvigelse">
+                      <rd:DefaultName>afvigelse</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("DataSet1") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <Color>= IIF(Fields!DebitCredit.Value&lt;&gt;0,
+iif( Fields!diff.Value&gt;0,"Red","Green")
+
+,"Black")</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>= Fields!Entries.Value- Fields!Budgets.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox13">
+                      <rd:DefaultName>textbox13</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>P</Format>
+                        <BackgroundColor>=IIf((RowNumber("DataSet1") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <Color>= IIF(Fields!DebitCredit.Value&lt;&gt;0,
+iif( Fields!diff.Value&gt;0,"Red","Green")
+
+,"Black")</Color>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=iif(
+(Fields!diff.Value/ Fields!Budgets.Value)=0,0,Fields!diff.Value/ Fields!Budgets.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox1">
+                      <rd:DefaultName>textbox1</rd:DefaultName>
+                      <ZIndex>11</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Account</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox4">
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <ZIndex>10</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Account Name</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <ZIndex>9</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Actual</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <ZIndex>8</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Budget</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <rd:DefaultName>textbox10</rd:DefaultName>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Difference</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox12">
+                      <rd:DefaultName>textbox12</rd:DefaultName>
+                      <ZIndex>6</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>% Difference</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+          </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.75cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.25cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.25cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.5cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.5cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.75cm</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>5.01984cm</Height>
+  </Body>
+  <PageHeader>
+    <ReportItems>
+      <Textbox Name="textbox26">
+        <Left>15.5cm</Left>
+        <Top>0.5cm</Top>
+        <rd:DefaultName>textbox26</rd:DefaultName>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63757cm</Height>
+        <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp;  Globals!TotalPages</Value>
+      </Textbox>
+      <Image Name="image1">
+        <Sizing>AutoSize</Sizing>
+        <MIMEType>image/gif</MIMEType>
+        <Width>3.80952cm</Width>
+        <Source>Embedded</Source>
+        <Style />
+        <Height>1.13757cm</Height>
+        <Value>microsoftgif</Value>
+      </Image>
+    </ReportItems>
+    <Height>0.49219in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageHeader>
+  <rd:ReportID>8011327e-d2a1-4c04-af2e-750be5479f12</rd:ReportID>
+  <LeftMargin>1.5cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="microsoftgif">
+      <ImageData>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</ImageData>
+      <MIMEType>image/gif</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="LastEntry">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     TOP 1 
+	DATEADD(day, - DATEPART(dayofyear, [CRONUS International Ltd_$G_L Entry].[Posting Date]) + 1,  
+	[CRONUS International Ltd_$G_L Entry].[Posting Date]) AS FromPostingDate, 
+	[CRONUS International Ltd_$G_L Entry].[Posting Date] AS ToPostingDate
+	
+FROM      
+	[CRONUS International Ltd_$G_L Entry] 
+	
+ ORDER BY
+	[CRONUS International Ltd_$G_L Entry].[Posting Date] DESC</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="FromPostingDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>FromPostingDate</DataField>
+        </Field>
+        <Field Name="ToPostingDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>ToPostingDate</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DataSet1">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>Select 
+	Postings.AccountNo,
+	Postings.Name,
+	Postings.Debit_Credit as DebitCredit,
+	Sum(Postings.Amount) as Entries,
+	Sum(Budget.BudgetAmount) as Budgets,
+	(Sum(Postings.Amount)-Sum(Budget.BudgetAmount)) as diff
+from
+(
+SELECT  
+	[CRONUS International Ltd_$G_L Account].No_ AS AccountNo, 
+	[CRONUS International Ltd_$G_L Account].Name, 
+       	[CRONUS International Ltd_$G_L Entry].Amount AS Amount, 
+	[CRONUS International Ltd_$G_L Account].Debit_Credit
+FROM    
+	[CRONUS International Ltd_$G_L Account] 
+	INNER JOIN
+              [CRONUS International Ltd_$G_L Entry] 
+	ON 
+	[CRONUS International Ltd_$G_L Account].No_ = [CRONUS International Ltd_$G_L Entry].[G_L Account No_]
+WHERE   
+	(Datepart(hour,[CRONUS International Ltd_$G_L Entry].[Posting Date])=0)
+	AND 
+	( [CRONUS International Ltd_$G_L Entry].[Posting Date] &gt;= CONVERT(datetime,@DateFrom, 103) )
+	AND 
+	([CRONUS International Ltd_$G_L Entry].[Posting Date] &lt;= CONVERT(datetime, @DateTo, 103)     )
+	AND
+	( 	([CRONUS International Ltd_$G_L Entry].[Global Dimension 1 Code] = @DimValue) 
+		OR 
+		([CRONUS International Ltd_$G_L Entry].[Global Dimension 2 Code] = @DimValue) 
+	)
+	AND
+	([CRONUS International Ltd_$G_L Entry].Amount &lt;&gt;0)
+	AND
+	([CRONUS International Ltd_$G_L Account].Income_Balance = 0) 
+	AND 
+	([CRONUS International Ltd_$G_L Account].[Account Type] = 0)
+)Postings
+left outer join
+(
+	SELECT     
+		[G_L Account No_] AS BudgetAccountNo, 
+		[Amount] AS BudgetAmount
+	FROM         
+		[CRONUS International Ltd_$G_L Budget Entry]
+	WHERE     
+		Date &gt;= CONVERT(datetime, @DateFrom, 103)
+		AND 
+		Date &lt;= CONVERT(datetime, @DateTo, 103)
+		AND 
+		[Budget Name] = @Budget
+		AND
+		( ([Global Dimension 1 Code] = @DimValue) OR ([Global Dimension 2 Code] = @DimValue) )
+)Budget
+ON
+	Postings.AccountNo = Budget.BudgetAccountNo
+group by
+	Postings.AccountNo,
+	Postings.Name,
+	Postings.Debit_Credit</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@DateFrom">
+            <Value>=Parameters!DateFrom.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DateTo">
+            <Value>=Parameters!DateTo.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DimValue">
+            <Value>=Parameters!DimValue.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Budget">
+            <Value>=Parameters!Budget.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="AccountNo">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>AccountNo</DataField>
+        </Field>
+        <Field Name="Name">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="DebitCredit">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>DebitCredit</DataField>
+        </Field>
+        <Field Name="Entries">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Entries</DataField>
+        </Field>
+        <Field Name="Budgets">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Budgets</DataField>
+        </Field>
+        <Field Name="diff">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>diff</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GetBudgets">
+      <Query>
+        <CommandText>SELECT     Name, Description, Name + ' - ' + Description AS budget
+FROM         [CRONUS International Ltd_$G_L Budget Name]</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Name">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="Description">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="budget">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>budget</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Dimensions">
+      <Query>
+        <CommandText>SELECT     [Global Dimension 1 Code] AS code
+FROM         [CRONUS International Ltd_$General Ledger Setup]
+UNION
+SELECT     [Global Dimension 2 Code] AS code
+FROM         [CRONUS International Ltd_$General Ledger Setup]</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="code">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>code</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DimensionValues">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     [Dimension Code], Code, Name, Code + ' - ' + Name AS Beskr
+  FROM         [CRONUS International Ltd_$Dimension Value]
+  WHERE     ([Dimension Code] = @DimType)</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@DimType">
+            <Value>=Parameters!DimType.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Dimension_Code">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Dimension Code</DataField>
+        </Field>
+        <Field Name="Code">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Code</DataField>
+        </Field>
+        <Field Name="Name">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="Beskr">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Beskr</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code />
+  <Width>18cm</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Description>Realised entries compared with a selected budget and a single dimension for the chosen period.</Description>
+  <Language>en-GB</Language>
+  <PageFooter>
+    <ReportItems>
+      <Textbox Name="textbox9">
+        <Action>
+          <Hyperlink>http://www.tectura.dk</Hyperlink>
+        </Action>
+        <Width>7.25cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontSize>6pt</FontSize>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>Developed by Tectura (Denmark) A/S</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.19687in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageFooter>
+  <TopMargin>2.5cm</TopMargin>
+  <PageHeight>29.7cm</PageHeight>
+</Report>

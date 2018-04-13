@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="NavisionRS">
+      <DataSourceReference>NavisionRS</DataSourceReference>
+      <rd:DataSourceID>a18a30cc-07f1-41fa-86bb-b9f7d3448178</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>2.5cm</BottomMargin>
+  <RightMargin>1.5cm</RightMargin>
+  <PageWidth>21cm</PageWidth>
+  <ReportParameters>
+    <ReportParameter Name="FromDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LastPostingDate</DataSetName>
+          <ValueField>HalfYearEarlier</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>From Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ToDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LastPostingDate</DataSetName>
+          <ValueField>Posting_Date</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>To Date:</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:GridSpacing>0.25cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox11">
+        <Top>2cm</Top>
+        <rd:DefaultName>textbox11</rd:DefaultName>
+        <ZIndex>3</ZIndex>
+        <Width>6.5cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63492cm</Height>
+        <Value>= "Period: " &amp; Parameters!FromDate.Value &amp; " to " &amp;  Parameters!ToDate.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox4">
+        <Top>1.5cm</Top>
+        <rd:DefaultName>textbox4</rd:DefaultName>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <Height>0.63492cm</Height>
+        <Value>The following table shows items in stock where no sale or usage has been recorded during the selected period</Value>
+      </Textbox>
+      <Textbox Name="textbox1">
+        <Top>0.25cm</Top>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <ZIndex>1</ZIndex>
+        <Width>18cm</Width>
+        <Style>
+          <BorderStyle>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <BorderWidth>
+            <Bottom>3pt</Bottom>
+          </BorderWidth>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <FontSize>18pt</FontSize>
+          <BorderColor>
+            <Bottom>Black</Bottom>
+          </BorderColor>
+          <BackgroundColor>SteelBlue</BackgroundColor>
+          <Color>White</Color>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>1cm</Height>
+        <Value>15: Dead items in stock</Value>
+      </Textbox>
+      <Table Name="table1">
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox9">
+                      <rd:DefaultName>textbox9</rd:DefaultName>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Total</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <rd:DefaultName>textbox10</rd:DefaultName>
+                      <ZIndex>6</ZIndex>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox8">
+                      <rd:DefaultName>textbox8</rd:DefaultName>
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Cost_Amount_Actual__2">
+                      <rd:DefaultName>Cost_Amount_Actual__2</rd:DefaultName>
+                      <ZIndex>4</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!Cost_Amount_Actual_.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+        <DataSetName>ItemLedgerEntries</DataSetName>
+        <Top>2.75cm</Top>
+        <TableGroups>
+          <TableGroup>
+            <Header>
+              <TableRows>
+                <TableRow>
+                  <TableCells>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Inventory_Posting_Group_1">
+                          <rd:DefaultName>Inventory_Posting_Group_1</rd:DefaultName>
+                          <ZIndex>11</ZIndex>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Fields!Inventory_Posting_Group.Value</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox12">
+                          <rd:DefaultName>textbox12</rd:DefaultName>
+                          <ZIndex>10</ZIndex>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="textbox14">
+                          <rd:DefaultName>textbox14</rd:DefaultName>
+                          <ZIndex>9</ZIndex>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value />
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                    <TableCell>
+                      <ReportItems>
+                        <Textbox Name="Cost_Amount_Actual__1">
+                          <rd:DefaultName>Cost_Amount_Actual__1</rd:DefaultName>
+                          <ZIndex>8</ZIndex>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <Format>N0</Format>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                          </Style>
+                          <CanGrow>true</CanGrow>
+                          <Value>=Sum(Fields!Cost_Amount_Actual_.Value)</Value>
+                        </Textbox>
+                      </ReportItems>
+                    </TableCell>
+                  </TableCells>
+                  <Height>0.63492cm</Height>
+                </TableRow>
+              </TableRows>
+            </Header>
+            <Grouping Name="InventPostGroup">
+              <GroupExpressions>
+                <GroupExpression>=Fields!Inventory_Posting_Group.Value</GroupExpression>
+              </GroupExpressions>
+            </Grouping>
+          </TableGroup>
+        </TableGroups>
+        <Width>17.77607cm</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Inventory_Posting_Group">
+                      <rd:DefaultName>Inventory_Posting_Group</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIf((RowNumber("ItemLedgerEntries") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="VareNr">
+                      <rd:DefaultName>VareNr</rd:DefaultName>
+                      <ZIndex>2</ZIndex>
+                      <Action>
+                        <Drillthrough>
+                          <ReportName>21 - Single Item Statistics</ReportName>
+                          <Parameters>
+                            <Parameter Name="itemid">
+                              <Value>=Fields!ItemNo.Value</Value>
+                            </Parameter>
+                          </Parameters>
+                        </Drillthrough>
+                      </Action>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIf((RowNumber("ItemLedgerEntries") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ItemNo.Value &amp; " - " &amp; Fields!Description.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Antal">
+                      <CanShrink>true</CanShrink>
+                      <rd:DefaultName>Antal</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("ItemLedgerEntries") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Quantity.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Cost_Amount_Actual_">
+                      <rd:DefaultName>Cost_Amount_Actual_</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Format>N0</Format>
+                        <BackgroundColor>=IIf((RowNumber("ItemLedgerEntries") Mod 2), "White", "Cornsilk")</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!Cost_Amount_Actual_.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+          </TableRows>
+          <Visibility>
+            <ToggleItem>Inventory_Posting_Group_1</ToggleItem>
+            <Hidden>true</Hidden>
+          </Visibility>
+        </Details>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <ZIndex>15</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Item Group</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <ZIndex>14</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Left</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Item</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <ZIndex>13</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Qty in stock</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <rd:DefaultName>textbox5</rd:DefaultName>
+                      <ZIndex>12</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>2pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <BackgroundColor>WhiteSmoke</BackgroundColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Cost Amount</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.63492cm</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>2.75cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>8.5cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.65877cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.8673cm</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+    </ReportItems>
+    <Height>5.28968cm</Height>
+  </Body>
+  <PageHeader>
+    <ReportItems>
+      <Textbox Name="textbox18">
+        <Left>15.5cm</Left>
+        <Top>0.5cm</Top>
+        <rd:DefaultName>textbox18</rd:DefaultName>
+        <ZIndex>1</ZIndex>
+        <Width>2.5cm</Width>
+        <Style>
+          <TextAlign>Right</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.63757cm</Height>
+        <Value>="Page " &amp;  Globals!PageNumber &amp; " of " &amp;  Globals!TotalPages</Value>
+      </Textbox>
+      <Image Name="image1">
+        <Sizing>AutoSize</Sizing>
+        <MIMEType>image/gif</MIMEType>
+        <Width>3.80952cm</Width>
+        <Source>Embedded</Source>
+        <Style />
+        <Height>1.13757cm</Height>
+        <Value>microsoftgif</Value>
+      </Image>
+    </ReportItems>
+    <Height>0.49219in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageHeader>
+  <rd:ReportID>5b96ce3a-9d1b-43a9-a40d-c7e70971dd4c</rd:ReportID>
+  <LeftMargin>1.5cm</LeftMargin>
+  <EmbeddedImages>
+    <EmbeddedImage Name="microsoftgif">
+      <ImageData>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</ImageData>
+      <MIMEType>image/gif</MIMEType>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <DataSets>
+    <DataSet Name="Items">
+      <Query>
+        <CommandText>SELECT     [CRONUS International Ltd_$Value Entry].[Item No_] AS ItemNo, SUM([CRONUS International Ltd_$Value Entry].[Invoiced Quantity]) AS Quantity, 
+                      [CRONUS International Ltd_$Item].Description, [CRONUS International Ltd_$Item].[Inventory Posting Group]
+FROM         [CRONUS International Ltd_$Item] INNER JOIN
+                      [CRONUS International Ltd_$Value Entry] ON [CRONUS International Ltd_$Item].No_ = [CRONUS International Ltd_$Value Entry].[Item No_]
+WHERE     ([CRONUS International Ltd_$Value Entry].[Invoiced Quantity] &lt;&gt; 0)
+GROUP BY [CRONUS International Ltd_$Value Entry].[Item No_], [CRONUS International Ltd_$Item].Description, 
+                      [CRONUS International Ltd_$Item].[Inventory Posting Group]
+ORDER BY [CRONUS International Ltd_$Item].[Inventory Posting Group]</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ItemNo">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="Description">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Inventory_Posting_Group">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Inventory Posting Group</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LastPostingDate">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     TOP 1 
+	[Posting Date] AS Posting_Date, 
+	DATEADD(day, - 180, [Posting Date]) AS HalfYearEarlier
+FROM         
+	[CRONUS International Ltd_$Value Entry]
+ORDER BY 
+	[Posting Date] DESC</CommandText>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Posting_Date">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>Posting_Date</DataField>
+        </Field>
+        <Field Name="HalfYearEarlier">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>HalfYearEarlier</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ItemUsage">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     
+	[Item No_] AS ItemNo
+FROM         
+	[CRONUS International Ltd_$Value Entry]
+WHERE     
+	([Invoiced Quantity] &lt;&gt; 0) 
+	AND 
+	([Posting Date] &lt;= CONVERT(datetime, @ToDate, 103)) 
+	AND 
+	([Posting Date] &gt;= CONVERT(datetime, @FromDate, 103))
+GROUP BY 
+	[Item No_]</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ToDate">
+            <Value>=Parameters!ToDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@FromDate">
+            <Value>=Parameters!FromDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ItemNo">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ItemNo</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ItemLedgerEntries_old">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     
+	[CRONUS International Ltd_$Item Ledger Entry].[Item No_] AS ItemNo, 
+	CAST(SUM([CRONUS International Ltd_$Item Ledger Entry].[Invoiced Quantity]) AS float) AS Quantity, 
+	SUM([CRONUS International Ltd_$Value Entry].[Cost Amount (Actual)]) AS [Cost Amount(Actual)],
+              [CRONUS International Ltd_$Item].Description, 
+	[CRONUS International Ltd_$Item].[Inventory Posting Group]
+FROM      
+	[CRONUS International Ltd_$Item] 
+	INNER JOIN
+              [CRONUS International Ltd_$Item Ledger Entry]
+	ON 
+	[CRONUS International Ltd_$Item].No_ = [CRONUS International Ltd_$Item Ledger Entry].[Item No_]
+	inner join
+	[CRONUS International Ltd_$Value Entry]
+	ON
+	[CRONUS International Ltd_$Item].No_ = [CRONUS International Ltd_$Value Entry].[Item No_]
+WHERE     
+	([CRONUS International Ltd_$Item Ledger Entry].[Invoiced Quantity] &lt;&gt; 0) 
+	AND 
+	(NOT ([CRONUS International Ltd_$Item Ledger Entry].[Item No_] IN
+                          (SELECT     
+			[Item No_] AS ItemNo
+                            FROM          
+			[CRONUS International Ltd_$Item Ledger Entry]
+                            WHERE      
+			([Invoiced Quantity] &lt;&gt; 0)
+			AND 
+			([Posting Date] &lt;= CONVERT(datetime, @ToDate, 103)) 
+			AND 
+			([Posting Date] &gt;= CONVERT(datetime, @FromDate, 103) ) 
+		)
+		)
+		
+	)
+	AND
+		(
+			([CRONUS International Ltd_$Value Entry].[Item Ledger Entry Type] = 1) 
+			OR
+			([CRONUS International Ltd_$Value Entry].[Item Ledger Entry Type] = 5)
+		) 
+	AND 
+	([CRONUS International Ltd_$Value Entry].[Expected Cost] &lt;&gt; 1) 
+	AND 
+              ([CRONUS International Ltd_$Value Entry].[Invoiced Quantity] &lt;&gt; 0) 
+GROUP BY 
+	[CRONUS International Ltd_$Item Ledger Entry].[Item No_], 
+	[CRONUS International Ltd_$Item].Description, 
+              [CRONUS International Ltd_$Item].[Inventory Posting Group]
+HAVING      
+	(SUM([CRONUS International Ltd_$Item Ledger Entry].[Invoiced Quantity]) &gt; 0)
+ORDER BY 
+	[CRONUS International Ltd_$Item].[Inventory Posting Group]</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ToDate">
+            <Value>=Parameters!ToDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@FromDate">
+            <Value>=Parameters!FromDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ItemNo">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="Cost_Amount_Actual_">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Cost Amount(Actual)</DataField>
+        </Field>
+        <Field Name="Description">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Inventory_Posting_Group">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Inventory Posting Group</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="test">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     
+	[CRONUS International Ltd_$Item Ledger Entry].[Item No_] AS ItemNo, 
+	CAST(SUM([CRONUS International Ltd_$Value Entry].[Invoiced Quantity]) AS float) AS Quantity, 
+	SUM([CRONUS International Ltd_$Value Entry].[Cost Amount (Actual)]) AS [Cost Amount(Actual)],
+              [CRONUS International Ltd_$Item].Description, 
+	[CRONUS International Ltd_$Item].[Inventory Posting Group]
+FROM      
+	[CRONUS International Ltd_$Item] 
+	INNER JOIN
+              [CRONUS International Ltd_$Item Ledger Entry]
+	ON 
+	[CRONUS International Ltd_$Item].No_ = [CRONUS International Ltd_$Item Ledger Entry].[Item No_]
+	inner join
+	[CRONUS International Ltd_$Value Entry]
+	ON
+	[CRONUS International Ltd_$Item].No_ = [CRONUS International Ltd_$Value Entry].[Item No_]
+WHERE     
+	([CRONUS International Ltd_$Item Ledger Entry].[Invoiced Quantity] &lt;&gt; 0) 
+	AND 
+	(NOT ([CRONUS International Ltd_$Item Ledger Entry].[Item No_] IN
+                          (SELECT     
+			[Item No_] AS ItemNo
+                            FROM          
+			[CRONUS International Ltd_$Item Ledger Entry]
+                            WHERE      
+			([Invoiced Quantity] &lt;&gt; 0) 
+			AND 
+			([Posting Date] &lt;= CONVERT(datetime, @ToDate, 103)) 
+			AND 
+			([Posting Date] &gt;= CONVERT(datetime, @FromDate, 103) ) 
+		)
+		)
+		
+	)
+	AND
+		(
+			([CRONUS International Ltd_$Value Entry].[Item Ledger Entry Type] = 1) 
+			OR
+			([CRONUS International Ltd_$Value Entry].[Item Ledger Entry Type] = 5)
+		) 
+	AND 
+	([CRONUS International Ltd_$Value Entry].[Expected Cost] &lt;&gt; 1) 
+	AND 
+              ([CRONUS International Ltd_$Value Entry].[Invoiced Quantity] &lt;&gt; 0) 
+GROUP BY 
+	[CRONUS International Ltd_$Item Ledger Entry].[Item No_], 
+	[CRONUS International Ltd_$Item].Description, 
+              [CRONUS International Ltd_$Item].[Inventory Posting Group]
+HAVING      
+	(SUM([CRONUS International Ltd_$Item Ledger Entry].[Invoiced Quantity]) &gt; 0)
+ORDER BY 
+	[CRONUS International Ltd_$Item].[Inventory Posting Group]</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ToDate">
+            <Value>=Parameters!ToDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@FromDate">
+            <Value>=Parameters!FromDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="ItemNo">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <rd:TypeName>System.Double</rd:TypeName>
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="Cost_Amount_Actual_">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Cost Amount(Actual)</DataField>
+        </Field>
+        <Field Name="Description">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Inventory_Posting_Group">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Inventory Posting Group</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ItemLedgerEntries">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     
+	[CRONUS International Ltd_$Item].[Inventory Posting Group], 
+	[CRONUS International Ltd_$Value Entry].[Item No_] AS ItemNo,  
+	[CRONUS International Ltd_$Item].Description, 
+     	SUM([CRONUS International Ltd_$Value Entry].[Invoiced Quantity]) AS Quantity, 
+	SUM([CRONUS International Ltd_$Value Entry].[Cost Amount (Actual)]) AS [Cost Amount(Actual)]
+FROM         
+	[CRONUS International Ltd_$Value Entry] 
+	INNER JOIN
+        [CRONUS International Ltd_$Item] 
+	ON 
+	[CRONUS International Ltd_$Value Entry].[Item No_] = [CRONUS International Ltd_$Item].No_
+WHERE    
+	([CRONUS International Ltd_$Value Entry].[Expected Cost] &lt;&gt; 1) 
+	AND--All items without sale or other usage in the period
+	([CRONUS International Ltd_$Value Entry].[Item No_] NOT IN ( 	Select 
+									[CRONUS International Ltd_$Value Entry].[Item No_] 
+								from 
+									[CRONUS International Ltd_$Value Entry] 
+								where 
+									[CRONUS International Ltd_$Value Entry].[Posting Date] between 											Convert(datetime, @FromDate, 103) AND CONVERT(datetime, @ToDate, 									103))
+							)								
+GROUP BY 
+	[CRONUS International Ltd_$Value Entry].[Item No_], 
+	[CRONUS International Ltd_$Item].Description, 
+        [CRONUS International Ltd_$Item].[Inventory Posting Group]
+HAVING      
+	(SUM([CRONUS International Ltd_$Value Entry].[Invoiced Quantity]) &lt;&gt; 0)
+order by
+	SUM([CRONUS International Ltd_$Value Entry].[Cost Amount (Actual)]) desc</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@FromDate">
+            <Value>=Parameters!FromDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ToDate">
+            <Value>=Parameters!ToDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>NavisionRS</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="Inventory_Posting_Group">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Inventory Posting Group</DataField>
+        </Field>
+        <Field Name="ItemNo">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Description">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="Cost_Amount_Actual_">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Cost Amount(Actual)</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Code />
+  <Width>18.25cm</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Description>Shows Cost Amount and Item quantity in stock with no sale or usage in the selected period.</Description>
+  <Language>en-GB</Language>
+  <PageFooter>
+    <ReportItems>
+      <Textbox Name="textbox7">
+        <Action>
+          <Hyperlink>http://www.tectura.dk</Hyperlink>
+        </Action>
+        <Width>7.25cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontSize>6pt</FontSize>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Value>Developed by Tectura (Denmark) A/S</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.19687in</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+  </PageFooter>
+  <TopMargin>2.5cm</TopMargin>
+  <PageHeight>29.7cm</PageHeight>
+</Report>
